@@ -1,36 +1,105 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# پروژه تستی با Next.js، Prisma و GraphQL  
 
-## Getting Started
+یک پروژه ساده برای تست ارتباط بین **سرور** و **کلاینت** با استفاده از **Next.js**، **Prisma**، و **GraphQL**. در این پروژه از **MySQL** به‌عنوان دیتابیس استفاده شده و ارتباط بین سرور و کلاینت با **Apollo** برقرار می‌شود.  
 
-First, run the development server:
+---
 
+## فهرست مطالب  
+1. [معرفی](#معرفی)  
+2. [پیش‌نیازها](#پیش-نیازها)  
+3. [نصب و راه‌اندازی](#نصب-و-راه‌اندازی)  
+4. [ویژگی‌ها](#ویژگی‌ها)  
+5. [نحوه استفاده](#نحوه-استفاده)  
+6. [لایسنس](#لایسنس)  
+
+---
+
+## معرفی  
+این پروژه شامل یک سرور و کلاینت Next.js است که با استفاده از GraphQL و Prisma به MySQL متصل می‌شود. ابزارهایی مانند **Apollo** برای ارتباط سرور و کلاینت و **Prisma Studio** برای مدیریت جداول دیتابیس به‌کار رفته‌اند.  
+
+---
+
+## پیش‌نیازها  
+برای اجرای پروژه، ابزارهای زیر باید نصب شوند:  
+- **Node.js** (نسخه: 20)  
+- **MySQL**  
+- **Yarn** یا **NPM**  
+
+---
+
+## نصب و راه‌اندازی  
+
+### 1. کلون کردن مخزن  
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/username/project-name.git
+cd project-name
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. تنظیم و ساخت Prisma  
+ایجاد تنظیمات Prisma:  
+```bash
+npx prisma init
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+ایجاد جداول در دیتابیس:  
+```bash
+npx prisma db push
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+درج داده‌های اولیه:  
+1. نصب ts-node:  
+   ```bash
+   npm install --save-dev ts-node
+   ```  
+2. افزودن تنظیمات در `tsconfig.json`:  
+   ```json
+   "ts-node": {
+     "compilerOptions": {
+       "module": "CommonJS"
+     }
+   }
+   ```  
+3. اضافه کردن دستور seed در `package.json`:  
+   ```json
+   "prisma": {
+     "seed": "ts-node prisma/seed.ts"
+   }
+   ```  
+4. اجرای دستور seed:  
+   ```bash
+   npx prisma db seed
+   ```  
 
-## Learn More
+### 3. مشاهده جداول در مرورگر  
+برای مدیریت و مشاهده جداول:  
+```bash
+npx prisma studio
+```
 
-To learn more about Next.js, take a look at the following resources:
+### 4. اجرای پروژه  
+برای شروع سرور توسعه:  
+```bash
+npm run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## ویژگی‌ها  
+- استفاده از **Next.js** برای سرور و کلاینت  
+- ارتباط با **MySQL** از طریق **Prisma**  
+- API‌های GraphQL با استفاده از **Apollo**  
+- مدیریت جداول دیتابیس با **Prisma Studio**  
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## نحوه استفاده  
+1. پروژه را کلون کنید.  
+2. مراحل تنظیم دیتابیس و Prisma را اجرا کنید.  
+3. دستور `npm run dev` را اجرا کنید تا پروژه راه‌اندازی شود.  
+4. از طریق مرورگر به آدرس [http://localhost:3000](http://localhost:3000) دسترسی داشته باشید.  
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## لایسنس  
+این پروژه تحت لایسنس MIT منتشر شده است.
+
